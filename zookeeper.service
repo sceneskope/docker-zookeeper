@@ -1,0 +1,22 @@
+[Unit]
+Description=zookeeper
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStartPre=-/usr/bin/docker kill zookeeper
+ExecStartPre=-/usr/bin/docker rm zookeeper
+ExecStartPre=/usr/bin/docker pull sceneskope/zookeeper:3.4.6
+ExecStart=/usr/bin/docker run \
+	--rm \
+	--name zookeeper \
+	--publish 2181:2181 \
+	--publish 2888:2888 \
+	--publish 3888:3888 \
+	--volume /var/zookeeper:/tmp/zookeeper \
+	sceneskope/zookeeper:3.4.6
+
+ExecStop=/usr/bin/docker stop zookeeper
+Restart=always
+RestartSec=10s
+

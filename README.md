@@ -1,2 +1,7 @@
-# docker-zookeeper
-Zookeeper docker build
+docker-zookeeper
+================
+
+Zookeeper docker build used for SceneSkope infrastructure
+
+```./build.sh```
+
